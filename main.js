@@ -12,6 +12,8 @@
 var http = require('http');
 // Include url module, which is helpful in parsing request parameters.
 var url = require('url');
+//Include fs module, which is helpful in reading and writing files.
+var fs = require("fs");
 
 // Create the server. Function passed as parameter is called on every request made.
 // request variable holds all request parameters
@@ -23,6 +25,9 @@ var server = http.createServer(function(request, response) {
 
   response.writeHead(200,{'Content-Type': 'text/plain'});
   // Send data and end response.
-  response.end('Hello World\n\nName:\t\t' + _get['name'] + '\n\nAge:\t\t' + _get['age']);
+  var output = 'Hello World!!\n\nName:\t\t' + _get['name'] + '\n\nAge:\t\t' + _get['age'];
+  // Write request parameters to a file
+  fs.writeFile('file.txt', output);
+  response.end(output);
 
 }).listen(8080); // Listen on the 8080 port.
