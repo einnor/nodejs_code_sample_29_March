@@ -27,9 +27,9 @@ const server = http.createServer((request, response) => {
   // Send data and end response.
   var output = '\n\n\n\n\t\t\t\tHello World!!\n\n\t\t\t\tName:\t\t' + _get['name'] + '\n\n\t\t\t\tAge:\t\t' + _get['age'];
   // Write request parameters to a file
-  fs.writeFile('file.txt', output, 'utf8', (err) => {
+  fs.appendFile('file.txt', output, 'utf8', (err) => {
     if (err) throw err;
-    console.log('The data was added to file!');
+    console.log('The data was appended to file!');
   });
   response.end(output);
 
